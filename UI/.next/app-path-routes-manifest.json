@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/input/page": "/input",
+  "/landing/page": "/landing",
+  "/waiting/page": "/waiting",
+  "/whatif/page": "/whatif",
+  "/export/page": "/export",
+  "/page": "/"
+}
