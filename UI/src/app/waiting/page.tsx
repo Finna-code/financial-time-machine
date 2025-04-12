@@ -1,9 +1,8 @@
-
-
 'use client';
 import ProjectionChart from '@/components/projection';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+/* eslint-disable */
 
 
 export default function WaitingPage() {

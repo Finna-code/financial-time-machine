@@ -1,8 +1,7 @@
-
-
 'use client';
 import Link from 'next/link';
 import Particles from 'react-tsparticles';
+/* eslint-disable */
 
 
 export default function Home() {

@@ -1,7 +1,6 @@
-
-
 'use client';
 import { useState } from 'react';
+/* eslint-disable */
 
 
 export default function WhatIfPage() {

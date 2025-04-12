@@ -1,1 +1,6 @@
-{}
+{
+  "/input/page": "app/input/page.js",
+  "/waiting/page": "app/waiting/page.js",
+  "/whatif/page": "app/whatif/page.js",
+  "/landing/page": "app/landing/page.js"
+}

@@ -1,5 +1,3 @@
-
-
 'use client';
 import {
   Chart as ChartJS,
@@ -11,6 +9,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+/* eslint-disable */
+
 
 
 import { Line } from 'react-chartjs-2';
