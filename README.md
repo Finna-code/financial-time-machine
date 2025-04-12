@@ -130,8 +130,8 @@ Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Deployment
 
-- **Frontend** hosted on [Vercel](https://vercel.com)
-- **Backend** currently runs locally, can be deployed to services like Render, Railway, or Heroku
+- **Frontend** hosted on [Vercel](https://financial-time-machine-sandy.vercel.app)
+- **Backend** hosted on [render](https://financial-time-machine-hqta.onrender.com)
 
 ---
 
