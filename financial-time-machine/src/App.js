@@ -11,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import dayjs from "dayjs";
-import Pattern from "./Pattern"; // ✅ Import the background
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
 
@@ -85,8 +84,8 @@ const App = () => {
       {
         label: "Projected Savings",
         data: simulation.map((d) => d.net),
-        borderColor: "#0284c7",
-        backgroundColor: "#bae6fd",
+        borderColor: "#60a5fa",
+        backgroundColor: "#93c5fd",
         fill: false,
         tension: 0.2,
       },
@@ -117,131 +116,145 @@ const App = () => {
   };
 
   return (
-    <>
-      <Pattern />
-      <div className="max-w-4xl mx-auto p-6 text-black min-h-screen font-sans relative z-10">
-        <h1 className="text-3xl font-bold mb-6">💸 Financial Time Machine</h1>
+    <div className="max-w-4xl mx-auto p-6 text-white bg-black min-h-screen font-sans">
+      <h1 className="text-3xl font-bold mb-6">💸 Financial Time Machine</h1>
 
-        <div className="grid gap-4 mb-6">
-          {["Name", "Age", "Occupation"].map((label) => (
-            <div key={label}>
-              <label className="block mb-1 text-sm">{label}</label>
+      <div className="grid gap-4 mb-6">
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Name</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Name"
+      value={form.name}
+      onChange={(e) => setForm({ ...form, name: e.target.value })}
+    />
+  </div>
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Age</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Age"
+      value={form.age}
+      onChange={(e) => setForm({ ...form, age: e.target.value })}
+    />
+  </div>
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Occupation</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Occupation"
+      value={form.occupation}
+      onChange={(e) => setForm({ ...form, occupation: e.target.value })}
+    />
+  </div>
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Monthly Income</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Monthly Income"
+      type="number"
+      value={income}
+      onChange={(e) => setIncome(Number(e.target.value))}
+    />
+  </div>
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Monthly Expenses</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Monthly Expenses"
+      type="number"
+      value={totalMonthlyExpenses}
+      readOnly
+    />
+  </div>
+  <div>
+    <label className="block mb-1 text-sm text-gray-300">Monthly Savings</label>
+    <input
+      className="bg-black border p-2 rounded text-white w-full"
+      placeholder="Monthly Savings"
+      type="number"
+      value={savings}
+      onChange={(e) => setSavings(Number(e.target.value))}
+    />
+  </div>
+</div>
+
+
+      <div className="mb-6">
+        <p className="mb-2">Select up to 2 financial priorities:</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {prioritiesList.map((p) => (
+            <label key={p} className="inline-flex items-center space-x-2">
               <input
-                className="bg-white border p-2 rounded w-full"
-                placeholder={label}
-                value={form[label.toLowerCase()]}
-                onChange={(e) => setForm({ ...form, [label.toLowerCase()]: e.target.value })}
+                type="checkbox"
+                checked={selectedPriorities.includes(p)}
+                onChange={() => handlePriorityChange(p)}
               />
-            </div>
+              <span>{p}</span>
+            </label>
           ))}
-          <div>
-            <label className="block mb-1 text-sm">Monthly Income</label>
-            <input
-              className="bg-white border p-2 rounded w-full"
-              placeholder="Monthly Income"
-              type="number"
-              value={income}
-              onChange={(e) => setIncome(Number(e.target.value))}
-            />
-          </div>
-          <div>
-            <label className="block mb-1 text-sm">Monthly Expenses</label>
-            <input
-              className="bg-gray-100 border p-2 rounded w-full"
-              placeholder="Monthly Expenses"
-              type="number"
-              value={totalMonthlyExpenses}
-              readOnly
-            />
-          </div>
-          <div>
-            <label className="block mb-1 text-sm">Monthly Savings</label>
-            <input
-              className="bg-white border p-2 rounded w-full"
-              placeholder="Monthly Savings"
-              type="number"
-              value={savings}
-              onChange={(e) => setSavings(Number(e.target.value))}
-            />
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <p className="mb-2">Select up to 2 financial priorities:</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {prioritiesList.map((p) => (
-              <label key={p} className="inline-flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={selectedPriorities.includes(p)}
-                  onChange={() => handlePriorityChange(p)}
-                />
-                <span>{p}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold text-xl mb-2">Monthly Expenses</h2>
-          {expenses.map((exp, idx) => (
-            <div key={idx} className="flex gap-2 my-1">
-              <input
-                className="bg-white border p-2 rounded"
-                placeholder="Category"
-                value={exp.category}
-                onChange={(e) => updateExpense(idx, "category", e.target.value)}
-              />
-              <input
-                className="bg-white border p-2 rounded"
-                placeholder="Amount"
-                type="number"
-                value={exp.amount}
-                onChange={(e) => updateExpense(idx, "amount", e.target.value)}
-              />
-            </div>
-          ))}
-          <button onClick={addExpense} className="text-blue-700 mt-2">+ Add Expense</button>
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold text-xl mb-2">Goals</h2>
-          {goals.map((goal, idx) => (
-            <div key={idx} className="flex gap-2 my-1 flex-wrap">
-              <input
-                className="bg-white border p-2 rounded"
-                placeholder="Goal"
-                value={goal.name}
-                onChange={(e) => updateGoal(idx, "name", e.target.value)}
-              />
-              <input
-                className="bg-white border p-2 rounded"
-                type="number"
-                value={goal.amount}
-                onChange={(e) => updateGoal(idx, "amount", e.target.value)}
-              />
-              <input
-                className="bg-white border p-2 rounded"
-                type="date"
-                value={goal.date}
-                onChange={(e) => updateGoal(idx, "date", e.target.value)}
-              />
-            </div>
-          ))}
-          <button onClick={addGoal} className="text-green-700 mt-2">+ Add Goal</button>
-        </div>
-
-        <div className="mb-6">
-          {goals.map((goal, idx) => (
-            <p key={idx} className="mb-1 text-sm">🎯 {getGoalAdvice(goal)}</p>
-          ))}
-        </div>
-
-        <div className="bg-white rounded p-4">
-          <Line data={chartData} options={chartOptions} />
         </div>
       </div>
-    </>
+
+      <div className="mb-6">
+        <h2 className="font-semibold text-xl mb-2">Monthly Expenses</h2>
+        {expenses.map((exp, idx) => (
+          <div key={idx} className="flex gap-2 my-1">
+            <input
+              className="bg-black border p-2 text-white rounded"
+              placeholder="Category"
+              value={exp.category}
+              onChange={(e) => updateExpense(idx, "category", e.target.value)}
+            />
+            <input
+              className="bg-black border p-2 text-white rounded"
+              placeholder="Amount"
+              type="number"
+              value={exp.amount}
+              onChange={(e) => updateExpense(idx, "amount", e.target.value)}
+            />
+          </div>
+        ))}
+        <button onClick={addExpense} className="text-blue-400 mt-2">+ Add Expense</button>
+      </div>
+
+      <div className="mb-6">
+        <h2 className="font-semibold text-xl mb-2">Goals</h2>
+        {goals.map((goal, idx) => (
+          <div key={idx} className="flex gap-2 my-1 flex-wrap">
+            <input
+              className="bg-black border p-2 text-white rounded"
+              placeholder="Goal"
+              value={goal.name}
+              onChange={(e) => updateGoal(idx, "name", e.target.value)}
+            />
+            <input
+              className="bg-black border p-2 text-white rounded"
+              type="number"
+              value={goal.amount}
+              onChange={(e) => updateGoal(idx, "amount", e.target.value)}
+            />
+            <input
+              className="bg-black border p-2 text-white rounded"
+              type="date"
+              value={goal.date}
+              onChange={(e) => updateGoal(idx, "date", e.target.value)}
+            />
+          </div>
+        ))}
+        <button onClick={addGoal} className="text-green-400 mt-2">+ Add Goal</button>
+      </div>
+
+      <div className="mb-6">
+        {goals.map((goal, idx) => (
+          <p key={idx} className="mb-1 text-sm">🎯 {getGoalAdvice(goal)}</p>
+        ))}
+      </div>
+
+      <div className="bg-white rounded p-4">
+        <Line data={chartData} options={chartOptions} />
+      </div>
+    </div>
   );
 };
 
