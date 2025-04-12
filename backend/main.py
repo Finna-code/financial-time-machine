@@ -14,6 +14,20 @@ import json
 
 app = FastAPI(title="Financial Time Machine")
 initialize_database()
+from fastapi.middleware.cors import CORSMiddleware
+
+
+app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://localhost:3000"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/")
 def root():
@@ -141,6 +155,29 @@ def what_if_handler(
 @app.post("/create_session/{user_id}")
 def create_user_session(user_id: int):
     return create_session(user_id)
+
+#generate adv
+@app.post("/generate_advice")
+def generate_direct_advice(data: FinanceInput):
+    advice = generate_financial_advice(
+        name=data.name,
+        age=data.age,
+        occupation=data.occupation,
+        income=data.income,
+        expenses=data.expenses,
+        savings=data.savings,
+        priorities=data.priorities,
+        notes=data.notes
+    )
+    quest = generate_financial_quest(data.name, data.income, data.expenses, data.savings)
+    return {
+        "user": data,
+        "financial_advice": advice,
+        "financial_quest": quest
+    }
+
+
+
 
 # Export CSV
 @app.get("/export_csv/{user_id}")

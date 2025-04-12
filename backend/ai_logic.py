@@ -71,11 +71,9 @@ def generate_financial_advice(name, age, occupation, income, expenses, savings, 
         import traceback
         traceback.print_exc()
 
-        return {
-            "archetype": "Unknown",
-            "summary": "No valid AI response received.",
-            "tips": ["Unable to generate financial advice due to API response issues."]
-        }
+    from fallback import fallback_financial_advice
+    return fallback_financial_advice(income, savings, priorities)
+
 
 def generate_financial_quest(name, income, expenses, savings):
     if savings < income * 0.2:
