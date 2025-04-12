@@ -1,39 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Financial Time Machine
+IITGCS-2406-Team-66-67f7f220
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Financial Time Machine** is a modern, interactive personal finance simulator that helps users explore different financial outcomes based on their financial habits. It provides actionable insights, visualizations, and simulations to support smarter personal decision-making.
+
+---
+
+## Features
+
+- Categorized user archetypes based on financial input
+- Tailored advice and guidance
+- Simulated “What-If” scenarios
+- Dynamic visualizations (income, expenses, savings)
+- Downloadable financial summaries (PDF)
+- Modern, accessible UI
+
+---
+
+## Technologies Used
+
+### Frontend
+- **Next.js 15 (App Router)**
+- **React + TypeScript**
+- **TailwindCSS**
+- **Chart.js**
+- **HTML2PDF.js**
+- **LocalStorage**
+
+### Backend
+- **FastAPI (Python)**
+- **SQLite**
+- **OpenAI API (GPT-4)** for financial guidance
+- **Custom logic** for simulations and fallback scenarios
+
+---
+
+## Project Structure
+
+```
+financial_time_machine/
+├── backend/
+│   ├── ai_logic.py
+│   ├── database.py
+│   ├── exceptions.py
+│   ├── fallback.py
+│   ├── main.py
+│   ├── models.py
+│   ├── opentest.py
+│   ├── progress.py
+│   ├── projection.py
+│   ├── session.py
+│   ├── what_if.py
+│   └── dataviz/
+│       ├── __init__.py
+│       └── visualization_utils.py
+│
+├── UI/
+│   ├── app/
+│   │   ├── input/
+│   │   │   └── page.tsx
+│   │   ├── landing/
+│   │   │   └── page.tsx
+│   │   ├── waiting/
+│   │   │   └── page.tsx
+│   │   ├── whatif/
+│   │   │   └── page.tsx
+│   │   └── layout.tsx
+│   │
+│   ├── components/
+│   │   └── projection.tsx
+│   │
+│   ├── styles/
+│   │   └── globals.css
+│   │
+│   ├── tsconfig.json
+│   └── package.json
+│
+├── datavis/
+│   └── financial-time-machine/
+│       ├── public/
+│       │   ├── favicon.ico
+│       │   ├── index.html
+│       │   ├── logo192.png
+│       │   ├── logo512.png
+│       │   ├── manifest.json
+│       │   └── robots.txt
+│       ├── src/
+│       │   ├── App.css
+│       │   ├── App.js
+│       │   ├── App.test.js
+│       │   ├── chart.js
+│       │   ├── index.css
+│       │   ├── index.js
+│       │   ├── logo.svg
+│       │   ├── Pattern.js
+│       │   ├── ProjectionChart.js
+│       │   ├── reportWebVitals.js
+│       │   └── setupTests.js
+│       ├── package.json
+│       └── package-lock.json
+│
+├── README.md
+└── LICENSE
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend (FastAPI)
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-## Learn More
+### Frontend (Next.js)
+```bash
+cd UI
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Frontend: [http://localhost:3000](http://localhost:3000)  
+Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+- **Frontend** hosted on [Vercel](https://vercel.com)
+- **Backend** currently runs locally, can be deployed to services like Render, Railway, or Heroku
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Known Issues
 
-# financial-time-machine
-IITGCS-2406-Team-66-67f7f220
+- AI advice is dependent on API key functionality; fallback system is in place
+- PDF download requires frontend context and browser permission
+- Currently optimized for local deployment
+
+---
+
+## Live Site
+
+[https://financial-time-machine-mkzerm4w5-finna-codes-projects.vercel.app/](https://financial-time-machine.vercel.app)
+
+---
+
+## Authors
+
+- **Aman** – Lead, Frontend, UI/UX, Integration
+- **Prateek** – Backend, FastAPI, AI integration
+- **Kiran** – Financial modeling, data visualisation
+
+---
+
+## License
+
+This is an academic project developed for learning and presentation purposes.
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
