@@ -143,12 +143,6 @@ Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## Live Site
-
-[https://financial-time-machine-mkzerm4w5-finna-codes-projects.vercel.app/](https://financial-time-machine.vercel.app)
-
----
-
 ## Authors
 
 - **Aman** – Lead, Frontend, UI/UX, Integration
