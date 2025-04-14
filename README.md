@@ -1,24 +1,24 @@
-
 # Financial Time Machine
+
 IITGCS-2406-Team-66-67f7f220
 
-
-**Financial Time Machine** is a modern, interactive personal finance simulator that helps users explore different financial outcomes based on their financial habits. It provides actionable insights, visualizations, and simulations to support smarter personal decision-making.
-
----
-
-## Features
-
-- Categorized user archetypes based on financial input
-- Tailored advice and guidance
-- Simulated “What-If” scenarios
-- Dynamic visualizations (income, expenses, savings)
-- Downloadable financial summaries (PDF)
-- Modern, accessible UI
+**Financial Time Machine** is an interactive personal finance simulator built to explore hypothetical financial futures based on a user's financial input. It generates personalized insights using AI, simulates “What-If” scenarios, and presents dynamic visualizations to support smarter decision-making.
 
 ---
 
-## Technologies Used
+## 🔍 Features
+
+- Archetype classification based on user financial behavior
+- Tailored financial guidance using OpenAI GPT-4
+- Simulation of financial futures and projections
+- Dynamic charts and visualizations (income, expenses, savings)
+- Downloadable summaries as PDF
+- Fast, responsive UI built with modern tooling
+- Local storage support for continuity
+
+---
+
+## 🧰 Technologies Used
 
 ### Frontend
 - **Next.js 15 (App Router)**
@@ -26,124 +26,103 @@ IITGCS-2406-Team-66-67f7f220
 - **TailwindCSS**
 - **Chart.js**
 - **HTML2PDF.js**
-- **LocalStorage**
+- **Browser LocalStorage**
 
 ### Backend
-- **FastAPI (Python)**
+- **FastAPI (Python 3.11+)**
 - **SQLite**
-- **OpenAI API (GPT-4)** for financial guidance
-- **Custom logic** for simulations and fallback scenarios
+- **OpenAI API (GPT-4)**
+- **Fallback logic for offline simulation**
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
-```
+<details>
+<summary> <b>Click here to expand</b> </summary>
+
+<br>
+
+```plaintext
 financial_time_machine/
 ├── backend/
-│   ├── ai_logic.py
-│   ├── database.py
-│   ├── exceptions.py
-│   ├── fallback.py
-│   ├── main.py
-│   ├── models.py
-│   ├── opentest.py
-│   ├── progress.py
-│   ├── projection.py
-│   ├── session.py
-│   ├── what_if.py
-│   └── dataviz/
-│       ├── __init__.py
-│       └── visualization_utils.py
+│   ├── main.py               # FastAPI entry point
+│   ├── projection.py         # Future simulation logic
+│   ├── fallback.py           # GPT-free fallback engine
+│   ├── session.py            # Session handling
+│   ├── models.py             # SQLite schema
+│   └── dataviz/              # Backend-side visualization utilities
 │
 ├── UI/
-│   ├── app/
-│   │   ├── input/
-│   │   │   └── page.tsx
-│   │   ├── landing/
-│   │   │   └── page.tsx
-│   │   ├── waiting/
-│   │   │   └── page.tsx
-│   │   ├── whatif/
-│   │   │   └── page.tsx
-│   │   └── layout.tsx
-│   │
-│   ├── components/
-│   │   └── projection.tsx
-│   │
-│   ├── styles/
-│   │   └── globals.css
-│   │
-│   ├── tsconfig.json
+│   ├── app/                  # App Router pages
+│   ├── components/           # Reusable UI components
+│   ├── styles/               # Global styles (Tailwind)
+│   ├── tsconfig.json         # TypeScript config
 │   └── package.json
 │
 ├── datavis/
 │   └── financial-time-machine/
 │       ├── public/
-│       │   ├── favicon.ico
-│       │   ├── index.html
-│       │   ├── logo192.png
-│       │   ├── logo512.png
-│       │   ├── manifest.json
-│       │   └── robots.txt
 │       ├── src/
-│       │   ├── App.css
-│       │   ├── App.js
-│       │   ├── App.test.js
-│       │   ├── chart.js
-│       │   ├── index.css
-│       │   ├── index.js
-│       │   ├── logo.svg
-│       │   ├── Pattern.js
-│       │   ├── ProjectionChart.js
-│       │   ├── reportWebVitals.js
-│       │   └── setupTests.js
 │       ├── package.json
 │       └── package-lock.json
 │
 ├── README.md
 └── LICENSE
 ```
+</br>
+</details>
 
 ---
 
-## Local Setup
+## ⚙️ Local Setup
 
-### Backend (FastAPI)
+To run the project locally, you'll need to launch both the backend (FastAPI) and the frontend (Next.js) environments separately.  
+Make sure you have **Python 3.11+** installed for the backend, and **Node.js (v18 or higher)** for the frontend.
+
+Each part must be started from its respective directory.  
+Follow the steps below to get both running on your local machine.
+
+### [Backend](http://127.0.0.1:8000) (FastAPI)
+
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-### Frontend (Next.js)
+### [Frontend](http://localhost:3000) (Next.js)
 ```bash
 cd UI
 npm install
 npm run dev
 ```
 
-Frontend: [http://localhost:3000](http://localhost:3000)  
-Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+---
+
+## 🌐 Deployment
+
+**Frontend: Hosted on [Vercel](https://financial-time-machine-sandy.vercel.app)**
+
+**Backend: Hosted on [Render](https://financial-time-machine-hqta.onrender.com)**
+
+Deployment may vary depending on the branch and configuration.
+For local testing, follow the setup instructions above.
 
 ---
 
-## Deployment
+## 🧪 Known Issues
+- GPT-based advice depends on OpenAI API key functionality
 
-- **Frontend** hosted on [Vercel](https://financial-time-machine-sandy.vercel.app)
-- **Backend** hosted on [render](https://financial-time-machine-hqta.onrender.com)
+- PDF download only works in a browser context
 
----
+- Backend must be running locally for full functionality if not deployed
 
-## Known Issues
-
-- AI advice is dependent on API key functionality; fallback system is in place
-- PDF download requires frontend context and browser permission
-- Currently optimized for local deployment
+- Some layout features may be optimized for desktop
 
 ---
 
-## Authors
+## 📝 Authors
 
 - **Aman** – Lead, Frontend, UI/UX, Integration
 - **Prateek** – Backend, FastAPI, AI integration
@@ -153,6 +132,8 @@ Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## License
 
-This is an academic project developed for learning and presentation purposes.
+- This is an academic project developed for learning and presentation purposes.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- This is a [Next.js](https://nextjs.org) project bootstrapped with [create-next-app](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+---
